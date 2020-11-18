@@ -1,0 +1,25 @@
+----FE 03----
+
+[2] Efetuar um pequeno ensaio sobre as principais diferenças encontradas, entre a execução em Oracle
+(modelo Relacional) e a execução em MongoDB (modelo documental), nomeadamente:
+    - Vantagens e desvantagens de cada um dos modelos;
+    - Potencial de aplicação ao problema apresentado
+
+[Resposta]:
+    De forma resumida, de seguida se encontram as principais vantagens e desvantagens destes dois tipos de modelo distintos:
+    - Modelo Relacional (ex. Oracle)
+        - Vantagens: 
+                -> Menor redundância de dados e integridade (todos os dados necessários aos relacionamentos são inseridos nas tabelas) dos mesmos (devido à normalização);
+                -> Facilidade de acesso à informação devido a estar organizada por tabelas.
+        - Desvantagens: 
+                -> Não escalável horizontalmente;
+                -> Implica definir toda a estrutura dos dados nas tabelas antes de serem inseridos (tipos, chaves, etc), quando podem ser não-estruturados.
+
+    - Modelo Documental (ex. Mongo)
+        - Vantagens: 
+                -> Escalável horizontalmente;
+                -> Não necessita de esquemas pré-definidos, podem ser guardados os dados sem ser necessário definir tabelas, chaves, ... Permite uma maior flexibilidade dos dados que são inseridos (ou omitidos da inserção)
+        - Desvantagens:
+                -> Maior redundância de dados, podem ser inseridos dados repetidos porque não é utilizado o conceito de chaves estrangeiras;
+                -> A informação precisa de ser processada posteriormente.
+    Tendo estas diferenças em mente, para este exemplo em específico, parece ser mais apropriado uma base de dados relacional, uma vez que os dados são sempre apresentados da mesma forma e, consequentemente, é mais fácil criar e desenhar um esquema para uma base de dados, pelo que tiraríamos partido das principais vantagens do modelo relacional. Por outro lado, perderíamos escalabilidade, que não é muito relevante porque são relativamente poucos dados.
