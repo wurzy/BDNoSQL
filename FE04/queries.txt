@@ -1,3 +1,37 @@
+---------------------------------------------------------------1---------------------------------------------------------------
+
+---------------------------------------------------------------2---------------------------------------------------------------
+
+[1] liste todos os documentos na coleção restaurants.
+>> db.restaurants.find().pretty()
+
+[2] liste apenas os campos restaurante_id, name, borough e cuisine para todos os documentos na coleção.
+>> db.restaurants.find({},{restaurant_id: 1, name: 1, borough: 1, cuisine: 1}).pretty()
+
+[3] liste os campos restaurante_id, name, borough e cuisine para todos os documentos na coleção, mas que exclua o campo _id.
+>> db.restaurants.find({},{restaurant_id: 1, name: 1, borough: 1, cuisine: 1, _id: 0}).pretty()
+
+[4] liste os campos restaurante_id, name, borough e zipcode para todos os documentos na coleção, mas que exclua o campo _id.
+>> db.restaurants.find({},{restaurant_id: 1, name: 1, borough: 1, "address.zipcode": 1, _id: 0}).pretty()
+
+[5] liste os restaurantes que estão localizados no bairro (borough) "Bronx".
+>> db.restaurants.find({borough: "Bronx"}).pretty()
+
+[6] liste os primeiros 5 restaurantes que estão localizados no bairro (borough) "Bronx".
+>> db.restaurants.find({borough: "Bronx"}).limit(5).pretty()
+
+[7] liste os 5 restaurantes após dos primeiros 5 (do 6º ao 10º) que estão localizados no bairro (borough) "Bronx".
+>> db.restaurants.find({borough: "Bronx"}).skip(5).limit(5).pretty()
+
+[8] liste todos os restaurantes que têm pelo menos uma pontuação (score) maior que 90.
+>> db.restaurants.find({"grades.score": {$gt: 90}}).pretty()
+
+[9] liste todos os restaurantes que têm uma pontuação (score) maior que 80 mas menor que 100.
+>> db.restaurants.find({"grades.score": {$gt: 80, $lt: 100}}).pretty()
+
+[10] liste todos os restaurantes que estão localizados numa latitude (coord.0) menor que -95.754168
+>> db.restaurants.find({"address.coord.0": {$lt: -95.754168}}).pretty()
+
 [11] recorrendo à mongo shell atualize todos os restaurantes que possuam a cozinha "American " para "American".
 >> db.restaurants.update({cuisine:"American "},{$set:{cuisine:"American"}} ,{multi:true})
 
