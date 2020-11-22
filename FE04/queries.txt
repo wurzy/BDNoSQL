@@ -1,0 +1,33 @@
+[11] recorrendo à mongo shell atualize todos os restaurantes que possuam a cozinha "American " para "American".
+>> db.restaurants.update({cuisine:"American "},{$set:{cuisine:"American"}} ,{multi:true})
+
+[12] liste todos os restaurantes cujo tipo de cozinha (cuisine) não seja "American", que a sua pontuação (score) seja maior que 70 e a latitude (address .coord.0) menor que -65.754168, utilizando o operador $and.
+>> db.restaurants.find({$and:[{cuisine:{$ne :"American"}}, {"grades.score": {$gt:70}}, {"address.coord.0": {$lt: -65.754168}}]}).pretty()
+
+[13] liste todos os restaurantes cujo tipo de cozinha (cuisine) não seja "American", que a sua pontuação (score) seja maior que 70 e a latitude (address .coord.0) menor que -65.754168.
+>> db.restaurants.find({cuisine:{$ne :"American"}, "grades.score": {$gt:70}, "address.coord.0": {$lt: -65.754168}}).pretty()
+
+[14] liste todos os restaurantes cujo tipo de cozinha (cuisine) não seja do tipo "American" e que tenham atingido uma classificação (grade) de "A" mas que não pertençam ao bairro (borough) de "Brooklyn". Deverá ser apresentada de acordo com o tipo de cozinha (cuisine) em ordem descendente.
+>> db.restaurants.find({$and:[{cuisine:{$ne :"American"}}, {"grades.grade":"A"},{borough:{$ne:"Brooklyn"}}]}).sort({cuisine:-1}).pretty()
+
+[15] liste todos os restaurantes que pertençam ao bairro (borough) "Bronx" e cujo tipo de cozinha (cuisine) seja quer "American" quer "Chinese".
+>> db.restaurants.find({$and:[{borough:"Bronx"}, {cuisine: {$in: ["American","Chinese"]}}]}).pretty()
+
+[16] liste todos os restaurantes cujas coordenadas (address.coord) sejam do tipo double (type: 1).
+>> db.restaurants.find({"address.coord": {$type: 1}}).pretty()
+
+[17] liste todos os restaurantes que contenham informação da rua (address.street).
+>> db.restaurants.find({"address.street": {$exists: true}}).pretty()
+
+[18] liste todos os restaurantes de forma ascendente pelo tipo de cozinha (cuisine) e descendente pelo bairro (borough).
+>> db.restaurants.find().sort({cuisine: 1, borough: -1)}.pretty()
+
+[19] liste o restaurant_id, name, address e localização geográfica (coord) para os restaurantes cujo segundo elemento do array da localização geográfica (coord) seja maior que 42 e até 52.
+>> db.restaurants.find({"address.coord.1": {$gt: 42, $lte:52}},{restaurant_id: 1, name: 1, address: 1}).pretty()
+
+[20] liste os restaurantes (restaurante_id, name, borough, cuisine) que não conseguiram uma pontuação (score) maior que 10.
+>> db.restaurants.find({"grades.score": {$not: {$gt: 10}}},{restaurant_id: 1, name: 1, borough: 1, cuisine: 1}).pretty()
+
+[21] liste todos os restaurantes (restaurante_id, name, borough e cuisine) que não pertencem ao bairro (borough) de "Staten Islan", ou "Queens" ou "Bronx" ou "Brooklin".
+>> db.restaurants.find({borough: {$nin: ["Staten Island", "Queens", "Bronx", "Brooklyn"]}},{restaurant_id: 1, name: 1, borough: 1, cuisine: 1}).pretty()
+
