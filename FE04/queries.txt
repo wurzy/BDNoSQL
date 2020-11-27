@@ -1,4 +1,69 @@
 ---------------------------------------------------------------1---------------------------------------------------------------
+[1] Listar todas as bases de dados após a instalação do container com a imagem do MongoDB.
+>> show dbs
+
+[2] Criar uma base de dados denominada “customers”.
+>> use customers
+
+[3] Verificar a criação da base de dados.
+>> db
+
+[4] Criar uma coleção denominada “customers”.
+>> db.createCollection("customers")
+
+[5] Validar a criação da coleção.
+>> show collections
+
+[6] Criar um cliente com os seguintes características: first_name: “John”, last_name:”Doe”, age: 30
+>> db.customers.insert({first_name: "John", last_name:"Doe", age: 30})
+
+[7] introduzir 2 clientes na coleção criada com as seguintes características: first_name: “Steven”, last_name:”Williams”, gender: “male” first_name: “Mary”, last_name: “Troy”, age: 19
+>> db.customers.insert([{first_name: "Steven", last_name:"Williams", gender: "male"}, {first_name: "Mary", last_name:"Troy", age: 19}])
+
+[8] Introduzir mais um cliente com as seguintes características: first_name: “Ric”, last_name: “Foe”, address: {street: “4 main st”, city: “Boston”}
+>> db.customers.insert({first_name: "Ric", last_name:"Foe", address: {street: "4 main st", city: "Boston"}})
+
+[9] Criar um cliente com as seguintes características: first_name: “Ana”, last_name: “Durant”, degree:[“phD”,”Msc”], address: {street: “4 Square Garden”, city: “New York”}, age: 32
+>> db.customers.insert({first_name: "Ana", last_name:"Durant", degree: ["phD","Msc"], address: {street: "4 Square Garden", city: "New York"}, age: 32})
+
+[10] Criar um cliente com as seguintes características: first_name: “Natalia”, last_name:”Will”, age: 44, gender: “female”
+>> db.customers.insert({first_name: "Natalia", last_name: "Will", age: 44, gender: "female"})
+
+[11] Listar todos os clientes.
+>> db.customers.find()
+
+[12] Listar todos os clientes usando a função pretty().
+>> db.customers.find().pretty()
+
+[13] Efetuar uma atualização ao cliente ‘Ric’, colocar idade 45.
+>> db.customers.update({first_name: "Ric"}, {$set: {age: 45}})
+
+[14] Encontrar todos os clientes que tenham ‘Will’ no último nome.
+>> db.customers.find({last_name: /Will/})
+
+[15] Efetuar uma atualização ao cliente ‘Steven’, colocar idade 35.
+>> db.customers.update({first_name: "Steven"}, {$set: {age: 35}})
+
+[16] Verificar se a idade da cliente ‘Ana’ é superior a 30 e se sim aumentar a idade em 10 anos.
+>> db.customers.update({first_name: "Ana", age: {$gt: 30}}, {$inc: {age: 10}})
+
+[17] O cliente ‘Ric’ quer que a sua idade seja removida da base de dados.
+>> db.customers.update({first_name: "Ric"}, {$unset: {age: 1}})
+
+[18] Procurar um cliente com o primeiro nome: "Jimmy" e atualizar, ou criar, caso não exista, com as seguintes características: first_name: "Jimmy", last_name: "Connors", age: 25, gender: male
+>> db.customers.update({first_name: "Jimmy"},{$set: {last_name: "Connors", age: 25, gender: "male"}},{upsert:true})
+
+[19] Procurar todos os clientes com idade superior ou igual a 25.
+>> db.customers.find({age: {$gte: 25}})
+
+[20] Procurar todos os clientes sexo masculino.
+>> db.customers.find({gender: "male"})
+
+[21] Apagar o cliente cujo primeiro nome é "Mary".
+>> db.customers.remove({first_name: "Mary"}, 1)
+
+[22] Encontrar os clientes com o nome "Ana" ou "Ric".
+>> db.customers.find({$or: [{first_name: "Ana"}, {first_name: "Ric"}]})
 
 ---------------------------------------------------------------2---------------------------------------------------------------
 
