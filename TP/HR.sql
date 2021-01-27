@@ -40,3 +40,11 @@ group by d.department_name
 order by Media_Salario desc;
 
 /* Total de empregadaos que trabalharam em cada departamento */
+with employees_by_dep as (
+    select d.department_id, jh.employee_id from Departments d, Job_history jh where jh.department_id = d.department_id
+    union all
+    select d.department_id, e.employee_id from Departments d, Employees e where e.department_id = d.department_id)
+select department_id as Departamento, count(distinct(employee_id)) as Total
+from employees_by_dep 
+group by department_id 
+order by Total desc, department_id;
