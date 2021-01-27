@@ -32,3 +32,11 @@ inner join Departments d on d.department_id = jh.department_id
 where e.EMPLOYEE_ID = 176
 order by (MONTHS_BETWEEN (jh.end_date,jh.start_date))*j.MAX_SALARY desc
 fetch first 1 rows only;
+
+/* Media de salarios por departamento */
+select d.department_name as Departamento, round(avg(e.salary),2) as Media_Salario from employees e
+inner join departments d on e.department_id=d.department_id
+group by d.department_name
+order by Media_Salario desc;
+
+/* Total de empregadaos que trabalharam em cada departamento */
