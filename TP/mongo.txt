@@ -1,0 +1,12 @@
+// Query #2 
+// $match só serve para o caso em que a região é nula
+// $addFields é só estética
+// a parte "_id: 0, Regiao: "$_id"" do $project também é só estética 
+ 
+db.employees.aggregate([
+  {$match: {"DEPARTMENT.LOCATION.REGION": {"$exists": true, "$ne": null}} },
+  {$addFields: {Nome: {$concat: ["$FIRST_NAME", " ", "$LAST_NAME"]}} },
+  {$sort: {"HIRE_DATE": 1,"Nome": 1} },
+  {$group: { _id: "$DEPARTMENT.LOCATION.REGION", Top5: {$push: {Nome:"$Nome", Data_Inicio:"$HIRE_DATE"}}} },
+  {$project: {_id: 0, Regiao: "$_id", Top5:{$slice:["$Top5", 5]}} }
+]).pretty()
