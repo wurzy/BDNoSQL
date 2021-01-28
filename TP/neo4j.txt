@@ -13,8 +13,15 @@ RETURN r.REGION_NAME AS Região, collect(Nome)[..5] As Nomes, collect(Datas)[..5
 
 
 // EXTRA 1
+// empregados no 4º nivel da cadeia de supervisão
 MATCH (e:EMPLOYEE)-[:SUPERVISED_BY]->(:EMPLOYEE)-[:SUPERVISED_BY]->(:EMPLOYEE)-[:SUPERVISED_BY]->(:EMPLOYEE)
 RETURN e.FIRST_NAME+' '+e.LAST_NAME AS Nome
 ORDER BY Nome
 
 // EXTRA 2
+// Criar relacionamentos RESIDES_IN de trabalhador para país, para todos os trabalhadores que estão no 3º nível de supervisão e são shipping clerks ou sales representative
+MATCH (e:EMPLOYEE)-[:WORKS_IN]->(:DEPARTMENT)-[:LOCATED_IN]->(:LOCATION)-[:LOCATED_IN]->(c:COUNTRY)
+MATCH (j:JOB)<-[:PRACTICES]-(e:EMPLOYEE)-[:SUPERVISED_BY]->(:EMPLOYEE)-[:SUPERVISED_BY]->(:EMPLOYEE)
+WHERE j.JOB_ID = 'SH_CLERK' OR j.JOB_ID = 'SA_REP'
+MERGE (e)-[:RESIDES_IN]->(c)
+RETURN e,c
