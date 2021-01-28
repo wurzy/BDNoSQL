@@ -1,0 +1,20 @@
+// 1
+Match(e:EMPLOYEE)-[w:WORKS_IN]->(d:DEPARTMENT)
+Return d.DEPARTMENT_NAME ,round(avg(toInteger(e.SALARY)),2) as media
+order by media desc 
+
+// 2
+MATCH (e:EMPLOYEE)-[:WORKS_IN]->(d:DEPARTMENT)-[:LOCATED_IN]->(l:LOCATION)-[:LOCATED_IN]->(c:COUNTRY)-[:LOCATED_IN]->(r:REGION)
+WITH e.FIRST_NAME+' '+e.LAST_NAME AS Nome, e.HIRE_DATE AS Datas, r 
+ORDER BY e.HIRE_DATE, Nome
+RETURN r.REGION_NAME AS Região, collect(Nome)[..5] As Nomes, collect(Datas)[..5] AS Datas_Início
+
+// 3
+
+
+// EXTRA 1
+MATCH (e:EMPLOYEE)-[:SUPERVISED_BY]->(:EMPLOYEE)-[:SUPERVISED_BY]->(:EMPLOYEE)-[:SUPERVISED_BY]->(:EMPLOYEE)
+RETURN e.FIRST_NAME+' '+e.LAST_NAME AS Nome
+ORDER BY Nome
+
+// EXTRA 2
