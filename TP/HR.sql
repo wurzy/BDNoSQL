@@ -25,7 +25,7 @@ from (select r.region_name as Regiao, concat(concat(e.first_name,' '), e.last_na
 where rank <= 5;
 
 /* (ID = 176) trabalho em que um user (com varios trabalhos no historico) faturou mais */
-select j.JOB_TITLE as Emprego, jh.start_date as DataInicial, jh.END_DATE  as DataFinal, d.DEPARTMENT_NAME as Departamento, Round((MONTHS_BETWEEN (jh.end_date,jh.start_date))*j.MAX_SALARY,2) as Faturado from EMPLOYEES e
+select j.JOB_TITLE as Emprego, jh.start_date as DataInicial, jh.END_DATE  as DataFinal, Round((MONTHS_BETWEEN (jh.end_date,jh.start_date))*j.MAX_SALARY,2) as Faturado from EMPLOYEES e
 inner join JOB_HISTORY jh on e.EMPLOYEE_ID = jh.EMPLOYEE_ID 
 inner join JOBS j on jh.JOB_ID = j.JOB_ID
 inner join Departments d on d.department_id = jh.department_id

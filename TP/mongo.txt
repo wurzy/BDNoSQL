@@ -11,6 +11,15 @@ db.employees.aggregate([
   {$project: {_id: 0, Regiao: "$_id", Top5:{$slice:["$Top5", 5]}} }
 ]).pretty()
 
+// Query #3
+// tem aqui um pequeno problema porque nao existe o MONTHS_BETWEEN
+db.employees.aggregate([
+  {$match: {"EMPLOYEE_ID": 176} },
+  {$unwind: "$JOB_HISTORY"},
+  {$project: {_id: 0, Emprego:"$JOB_HISTORY.JOB.JOB_TITLE", DataInicial: "$JOB_HISTORY.START_DATE", DataFinal: "$JOB_HISTORY.END_DATE",Faturado: {$multiply: [{$divide: [{$subtract: ["$JOB_HISTORY.END_DATE", "$JOB_HISTORY.START_DATE"]}, 1000*60*60*24*30]}, "$JOB_HISTORY.JOB.MAX_SALARY"]}} }, 
+  {$sort: {"Faturado": -1}},
+  {$limit: 1}
+]).pretty()
 
 // Query Extra #1
 // Numero de empregados por localizaçao
