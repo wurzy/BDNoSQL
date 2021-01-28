@@ -1,3 +1,58 @@
+// Query 1
+// Esta parte dá me os que trabalham no mesmo departamento que o 101
+db.departments.aggregate([
+  {$match: {"EMPLOYEES": {$elemMatch: {"EMPLOYEE_ID": 101}}}},
+  {$unwind: "$EMPLOYEES"},
+  {$project: {_id: 0, ID: "$EMPLOYEES.EMPLOYEE_ID", Nome: {$concat: ["$EMPLOYEES.FIRST_NAME", " ", "$EMPLOYEES.LAST_NAME"]}}},
+  {$match: {"ID": {$nin: [101]}}}
+]).pretty()
+
+// Este dá me os departamentos que o 101 já trabalhou sem ser o atual
+db.departments.aggregate([
+  {$unwind: "$EMPLOYEES"},
+  {$unwind: "$EMPLOYEES.JOB_HISTORY"},
+  {$match: {"EMPLOYEES.JOB_HISTORY.DEPARTMENT_ID": {$nin: ["$DEPARTMENT_ID"]}, "EMPLOYEES.EMPLOYEE_ID": {$in: [101]}}},
+  {$group: {_id: "$EMPLOYEES.JOB_HISTORY.DEPARTMENT_ID"}},
+  {$project: {_id: 0, Departamento: "$_id"}}
+]).pretty()
+
+db.departments.aggregate([
+  {$unwind: "$EMPLOYEES"},
+  {$unwind: "$EMPLOYEES.JOB_HISTORY"},
+  {$group: {_id: "$EMPLOYEES.JOB_HISTORY.DEPARTMENT_ID", Trabalharam: {$push: {ID:"$EMPLOYEES.EMPLOYEE_ID" ,Nome: {$concat: ["$EMPLOYEES.FIRST_NAME", " ", "$EMPLOYEES.LAST_NAME"]}}}}}
+]).pretty()
+
+  {$project: _id: 0, Departamento: "$_id",Nome: {$concat: ["$EMPLOYEES.FIRST_NAME", " ", "$EMPLOYEES.LAST_NAME"]} }
+
+db.departments.aggregate([
+  {$facet: {
+    "Departamento_Atual": [
+      {$match: {"EMPLOYEES": {$elemMatch: {"EMPLOYEE_ID": 101}}}},
+      {$unwind: "$EMPLOYEES"},
+      {$project: {_id: 0, ID: "$EMPLOYEES.EMPLOYEE_ID", Nome: {$concat: ["$EMPLOYEES.FIRST_NAME", " ", "$EMPLOYEES.LAST_NAME"]}}},
+      {$match: {"ID": {$nin: [101]}}}
+    ],
+    "Departamentos_Anteriores": [
+      {$unwind: "$EMPLOYEES"},
+      {$unwind: "$EMPLOYEES.JOB_HISTORY"},
+      {$match: {"EMPLOYEES.JOB_HISTORY.DEPARTMENT_ID": {$nin: ["$DEPARTMENT_ID"]}   , "EMPLOYEES.EMPLOYEE_ID": {$in: [101]}}},
+      {$group: {_id: "$EMPLOYEES.JOB_HISTORY.DEPARTMENT_ID"}},
+      {$project: {_id: 0, Departamento: "$_id"}}
+    ]
+  }}
+]).pretty()
+
+  {$match: {"DEPARTMENT_ID": {$in: ["$Departamentos_Anteriores.Departamento"]}}}
+//////////////////////////////////////////////////////////////////
+
+// NOVA Query #1 == SQL EXTRA #1 (Salarios medios p/departamento)
+db.departments.aggregate([
+  {$unwind: "$EMPLOYEES"},
+  {$group: {_id: "$DEPARTMENT_NAME", Media_Salario: {$avg: "$EMPLOYEES.SALARY"}}},
+  {$sort: {"Media_Salario": -1}},
+  {$project: {_id: 0, Departamento: "$_id", Media_Salario: {$round: ["$Media_Salario",2]}}}
+]).pretty()
+
 // Query #2 
 // $match só serve para o caso em que a região é nula
 // $addFields é só estética
