@@ -53,6 +53,19 @@ db.departments.aggregate([
   {$project: {_id: 0, Regiao: "$_id", Maximo: "$Maximo"}}
 ]).pretty()
 
+// Query Extra #3
+// Saber o departamento e a região da empregada 'Shelley Higgins'
+// so para sar o find
+db.departments.find(
+  {"EMPLOYEES": {$elemMatch: {"FIRST_NAME": "Shelley", "LAST_NAME": "Higgins"}}},
+  {_id: 0, "DEPARTMENT_NAME": 1, "REGION": "$LOCATION.REGION"}
+)
+
+// Query Extra #4
+// Total de pessoas contratadas entre 2003 e 2005
+db.departments.find(
+  {"EMPLOYEES": {$elemMatch: {"HIRE_DATE": {$gte: ISODate("2003-01-01T00:00:00.000Z"), $lte: ISODate("2005-12-31T00:00:00.000Z")}}}}
+).count()
 
 
 
