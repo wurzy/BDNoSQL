@@ -1,6 +1,6 @@
 [{
   "_id": {
-    "$oid": "6012eb9636a3365e651d7adc"
+    "$oid": "60133a0636a3365e651d7aff"
   },
   "DEPARTMENT_ID": 10,
   "DEPARTMENT_NAME": "Administration",
@@ -41,7 +41,6 @@
           "END_DATE": {
             "$date": "2001-06-17T00:00:00Z"
           },
-          "JOB_ID": "AD_ASST",
           "DEPARTMENT_ID": 90,
           "JOB": {
             "JOB_TITLE": "Administration Assistant",
@@ -56,7 +55,6 @@
           "END_DATE": {
             "$date": "2006-12-31T00:00:00Z"
           },
-          "JOB_ID": "AC_ACCOUNT",
           "DEPARTMENT_ID": 90,
           "JOB": {
             "JOB_TITLE": "Public Accountant",
@@ -69,7 +67,7 @@
   ]
 },{
   "_id": {
-    "$oid": "6012eb9636a3365e651d7add"
+    "$oid": "60133a0636a3365e651d7b00"
   },
   "DEPARTMENT_ID": 20,
   "DEPARTMENT_NAME": "Marketing",
@@ -110,7 +108,6 @@
           "END_DATE": {
             "$date": "2007-12-19T00:00:00Z"
           },
-          "JOB_ID": "MK_REP",
           "DEPARTMENT_ID": 20,
           "JOB": {
             "JOB_TITLE": "Marketing Representative",
@@ -144,7 +141,7 @@
   ]
 },{
   "_id": {
-    "$oid": "6012eb9636a3365e651d7ade"
+    "$oid": "60133a0636a3365e651d7b01"
   },
   "DEPARTMENT_ID": 30,
   "DEPARTMENT_NAME": "Purchasing",
@@ -185,7 +182,6 @@
           "END_DATE": {
             "$date": "2007-12-31T00:00:00Z"
           },
-          "JOB_ID": "ST_CLERK",
           "DEPARTMENT_ID": 50,
           "JOB": {
             "JOB_TITLE": "Stock Clerk",
@@ -303,7 +299,7 @@
   ]
 },{
   "_id": {
-    "$oid": "6012eb9636a3365e651d7adf"
+    "$oid": "60133a0636a3365e651d7b02"
   },
   "DEPARTMENT_ID": 40,
   "DEPARTMENT_NAME": "Human Resources",
@@ -341,7 +337,7 @@
   ]
 },{
   "_id": {
-    "$oid": "6012eb9636a3365e651d7ae0"
+    "$oid": "60133a0636a3365e651d7b03"
   },
   "DEPARTMENT_ID": 50,
   "DEPARTMENT_NAME": "Shipping",
@@ -424,7 +420,6 @@
           "END_DATE": {
             "$date": "2007-12-31T00:00:00Z"
           },
-          "JOB_ID": "ST_CLERK",
           "DEPARTMENT_ID": 50,
           "JOB": {
             "JOB_TITLE": "Stock Clerk",
@@ -1319,7 +1314,7 @@
   ]
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7ae1"
+    "$oid": "60133a0636a3365e651d7b04"
   },
   "DEPARTMENT_ID": 60,
   "DEPARTMENT_NAME": "IT",
@@ -1441,7 +1436,7 @@
   ]
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7ae2"
+    "$oid": "60133a0636a3365e651d7b05"
   },
   "DEPARTMENT_ID": 70,
   "DEPARTMENT_NAME": "Public Relations",
@@ -1479,7 +1474,7 @@
   ]
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7ae3"
+    "$oid": "60133a0636a3365e651d7b06"
   },
   "DEPARTMENT_ID": 80,
   "DEPARTMENT_NAME": "Sales",
@@ -2235,7 +2230,6 @@
           "END_DATE": {
             "$date": "2006-12-31T00:00:00Z"
           },
-          "JOB_ID": "SA_REP",
           "DEPARTMENT_ID": 80,
           "JOB": {
             "JOB_TITLE": "Sales Representative",
@@ -2250,7 +2244,6 @@
           "END_DATE": {
             "$date": "2007-12-31T00:00:00Z"
           },
-          "JOB_ID": "SA_MAN",
           "DEPARTMENT_ID": 80,
           "JOB": {
             "JOB_TITLE": "Sales Manager",
@@ -2309,7 +2302,7 @@
   ]
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7ae4"
+    "$oid": "60133a0636a3365e651d7b07"
   },
   "DEPARTMENT_ID": 90,
   "DEPARTMENT_NAME": "Executive",
@@ -2371,7 +2364,6 @@
           "END_DATE": {
             "$date": "2001-10-27T00:00:00Z"
           },
-          "JOB_ID": "AC_ACCOUNT",
           "DEPARTMENT_ID": 110,
           "JOB": {
             "JOB_TITLE": "Public Accountant",
@@ -2386,7 +2378,6 @@
           "END_DATE": {
             "$date": "2005-03-15T00:00:00Z"
           },
-          "JOB_ID": "AC_MGR",
           "DEPARTMENT_ID": 110,
           "JOB": {
             "JOB_TITLE": "Accounting Manager",
@@ -2423,7 +2414,6 @@
           "END_DATE": {
             "$date": "2006-07-24T00:00:00Z"
           },
-          "JOB_ID": "IT_PROG",
           "DEPARTMENT_ID": 60,
           "JOB": {
             "JOB_TITLE": "Programmer",
@@ -2436,7 +2426,7 @@
   ]
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7ae5"
+    "$oid": "60133a0636a3365e651d7b08"
   },
   "DEPARTMENT_ID": 100,
   "DEPARTMENT_NAME": "Finance",
@@ -2579,7 +2569,7 @@
   ]
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7ae6"
+    "$oid": "60133a0636a3365e651d7b09"
   },
   "DEPARTMENT_ID": 110,
   "DEPARTMENT_NAME": "Accounting",
@@ -2638,7 +2628,7 @@
   ]
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7ae7"
+    "$oid": "60133a0636a3365e651d7b0a"
   },
   "DEPARTMENT_ID": 120,
   "DEPARTMENT_NAME": "Treasury",
@@ -2654,7 +2644,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7ae8"
+    "$oid": "60133a0636a3365e651d7b0b"
   },
   "DEPARTMENT_ID": 130,
   "DEPARTMENT_NAME": "Corporate Tax",
@@ -2670,7 +2660,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7ae9"
+    "$oid": "60133a0636a3365e651d7b0c"
   },
   "DEPARTMENT_ID": 140,
   "DEPARTMENT_NAME": "Control And Credit",
@@ -2686,7 +2676,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7aea"
+    "$oid": "60133a0636a3365e651d7b0d"
   },
   "DEPARTMENT_ID": 150,
   "DEPARTMENT_NAME": "Shareholder Services",
@@ -2702,7 +2692,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7aeb"
+    "$oid": "60133a0736a3365e651d7b0e"
   },
   "DEPARTMENT_ID": 160,
   "DEPARTMENT_NAME": "Benefits",
@@ -2718,7 +2708,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7aec"
+    "$oid": "60133a0736a3365e651d7b0f"
   },
   "DEPARTMENT_ID": 170,
   "DEPARTMENT_NAME": "Manufacturing",
@@ -2734,7 +2724,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7aed"
+    "$oid": "60133a0736a3365e651d7b10"
   },
   "DEPARTMENT_ID": 180,
   "DEPARTMENT_NAME": "Construction",
@@ -2750,7 +2740,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7aee"
+    "$oid": "60133a0736a3365e651d7b11"
   },
   "DEPARTMENT_ID": 190,
   "DEPARTMENT_NAME": "Contracting",
@@ -2766,7 +2756,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7aef"
+    "$oid": "60133a0736a3365e651d7b12"
   },
   "DEPARTMENT_ID": 200,
   "DEPARTMENT_NAME": "Operations",
@@ -2782,7 +2772,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7af0"
+    "$oid": "60133a0736a3365e651d7b13"
   },
   "DEPARTMENT_ID": 210,
   "DEPARTMENT_NAME": "IT Support",
@@ -2798,7 +2788,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7af1"
+    "$oid": "60133a0736a3365e651d7b14"
   },
   "DEPARTMENT_ID": 220,
   "DEPARTMENT_NAME": "NOC",
@@ -2814,7 +2804,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7af2"
+    "$oid": "60133a0736a3365e651d7b15"
   },
   "DEPARTMENT_ID": 230,
   "DEPARTMENT_NAME": "IT Helpdesk",
@@ -2830,7 +2820,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7af3"
+    "$oid": "60133a0736a3365e651d7b16"
   },
   "DEPARTMENT_ID": 240,
   "DEPARTMENT_NAME": "Government Sales",
@@ -2846,7 +2836,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7af4"
+    "$oid": "60133a0736a3365e651d7b17"
   },
   "DEPARTMENT_ID": 250,
   "DEPARTMENT_NAME": "Retail Sales",
@@ -2862,7 +2852,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7af5"
+    "$oid": "60133a0736a3365e651d7b18"
   },
   "DEPARTMENT_ID": 260,
   "DEPARTMENT_NAME": "Recruiting",
@@ -2878,7 +2868,7 @@
   "EMPLOYEES": []
 },{
   "_id": {
-    "$oid": "6012eb9736a3365e651d7af6"
+    "$oid": "60133a0736a3365e651d7b19"
   },
   "DEPARTMENT_ID": 270,
   "DEPARTMENT_NAME": "Payroll",
