@@ -1,4 +1,4 @@
-// 1 EXEC TIME = 49ms 
+// 1 EXEC TIME = 57ms 
 Match(e:EMPLOYEE)-[w:WORKS_IN]->(d:DEPARTMENT)
 Return d.DEPARTMENT_NAME ,round(avg(toInteger(e.SALARY)),2) as media
 order by media desc 
@@ -9,21 +9,24 @@ WITH e.FIRST_NAME+' '+e.LAST_NAME AS Nome, e.HIRE_DATE AS Datas, r
 ORDER BY e.HIRE_DATE, Nome
 RETURN r.REGION_NAME AS Região, collect(Nome)[..5] As Nomes, collect(Datas)[..5] AS Datas_Início
 
-// 3 EXEC TIME = 55ms
-MATCH (jh:JOB_HISTORY)-[r:BELONGS_TO]->(e:EMPLOYEE)
-MATCH (jh:JOB_HISTORY)-[p:REGARDING]->(j:JOB)
-where e.EMPLOYEE_ID = '176'
-RETURN j.JOB_TITLE as Emprego, jh.START_DATE as Data_Inicial, jh.END_DATE as Data_Final, duration.inMonths(date(replace(jh.START_DATE,".","-")),date(replace(jh.END_DATE,".","-"))).months*(toInteger(j.MAX_SALARY)) as faturado
-order by faturado desc
-limit 1
+// 3 EXEC TIME = 11ms
+MATCH (e:EMPLOYEE)-[r:PRACTICED]->(j:JOB)
+WHERE e.EMPLOYEE_ID = '176'
+RETURN j.JOB_TITLE as Emprego, 
+	  r.START_DATE as Data_Inicial, 
+    r.END_DATE as Data_Final, 
+    duration.inMonths(date(replace(r.START_DATE,".","-")),
+    date(REPLACE(r.END_DATE,".","-"))).months*(toInteger(j.MAX_SALARY)) AS Faturado
+ORDER BY Faturado DESC
+LIMIT 1
 
-// EXTRA 1 EXEC TIME = 7ms
+// EXTRA 1 EXEC TIME = 104ms
 // empregados no 4º nivel da cadeia de supervisão
 MATCH (e:EMPLOYEE)-[:SUPERVISED_BY]->(:EMPLOYEE)-[:SUPERVISED_BY]->(:EMPLOYEE)-[:SUPERVISED_BY]->(:EMPLOYEE)
 RETURN e.FIRST_NAME+' '+e.LAST_NAME AS Nome
 ORDER BY Nome
 
-// EXTRA 2 EXEC TIME = 385ms
+// EXTRA 2 EXEC TIME = 330ms
 // Criar relacionamentos RESIDES_IN de trabalhador para país, para todos os trabalhadores que estão no 3º nível de supervisão e são shipping clerks ou sales representative
 MATCH (e:EMPLOYEE)-[:WORKS_IN]->(:DEPARTMENT)-[:LOCATED_IN]->(:LOCATION)-[:LOCATED_IN]->(c:COUNTRY)
 MATCH (j:JOB)<-[:PRACTICES]-(e:EMPLOYEE)-[:SUPERVISED_BY]->(:EMPLOYEE)-[:SUPERVISED_BY]->(:EMPLOYEE)
