@@ -7,7 +7,7 @@ db.departments.aggregate([
   {$project: {_id: 0, Departamento: "$_id", Media_Salario: {$round: ["$Media_Salario",2]}}}
 ]).pretty()
 
-// TEMPO = 2ms
+// TEMPO = 4ms
 time(() => db.departments.aggregate([
   {$unwind: "$EMPLOYEES"},
   {$group: {_id: "$DEPARTMENT_NAME", Media_Salario: {$avg: "$EMPLOYEES.SALARY"}}},
@@ -49,7 +49,7 @@ db.departments.aggregate([
   {$limit: 1}
 ]).pretty()
 
-// TEMPO = 2ms
+// TEMPO = 14ms
 time(()=>db.departments.aggregate([
   {$unwind: "$EMPLOYEES"},
   {$match: {"EMPLOYEES.EMPLOYEE_ID": 176} },
@@ -70,7 +70,7 @@ db.departments.aggregate([
   {$project: {_id: 0, Localizacao: "$_id", Total: "$Total"}}
 ]).pretty()
 
-// TEMPO = 2ms
+// TEMPO = 3ms
 time(()=>db.departments.aggregate([
   {$unwind: "$EMPLOYEES"},
   {$match: {"LOCATION": {"$ne": {}}} },
@@ -90,7 +90,7 @@ db.departments.aggregate([
   {$project: {_id: 0, Regiao: "$_id", Maximo: "$Maximo"}}
 ]).pretty()
 
-// TEMPO = 4ms
+// TEMPO = 3ms
 time(()=>db.departments.aggregate([
   {$unwind: "$EMPLOYEES"},
   {$match: {"LOCATION.REGION": {"$exists": true, "$ne": null}} },
