@@ -10,7 +10,12 @@ ORDER BY e.HIRE_DATE, Nome
 RETURN r.REGION_NAME AS Região, collect(Nome)[..5] As Nomes, collect(Datas)[..5] AS Datas_Início
 
 // 3
-
+MATCH (jh:JOB_HISTORY)-[r:BELONGS_TO]->(e:EMPLOYEE)
+MATCH (jh:JOB_HISTORY)-[p:REGARDING]->(j:JOB)
+where e.EMPLOYEE_ID = '176'
+RETURN j.JOB_TITLE as Emprego, jh.START_DATE as Data_Inicial, jh.END_DATE as Data_Final, duration.inMonths(date(replace(jh.START_DATE,".","-")),date(replace(jh.END_DATE,".","-"))).months*(toInteger(j.MAX_SALARY)) as faturado
+order by faturado desc
+limit 1
 
 // EXTRA 1
 // empregados no 4º nivel da cadeia de supervisão
