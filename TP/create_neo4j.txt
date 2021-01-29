@@ -1,3 +1,5 @@
+// CRIAÇÃO DOS NODOS ---------------------------------------------------------------
+
 LOAD CSV WITH HEADERS FROM "file:///COUNTRIES.csv" AS row
 CREATE (country:COUNTRY {COUNTRY_ID: row.COUNTRY_ID})
 SET country.COUNTRY_NAME = row.COUNTRY_NAME
@@ -40,73 +42,60 @@ SET employee.FIRST_NAME = row.FIRST_NAME,
     employee.MANAGER_ID = row.MANAGER_ID
 RETURN employee;
 
-LOAD CSV WITH HEADERS FROM "file:///JOB_HISTORY.csv" AS row
-CREATE (job_history:JOB_HISTORY {EMPLOYEE_ID: row.EMPLOYEE_ID, START_DATE: row.START_DATE })
-SET job_history.END_DATE = row.END_DATE
-RETURN job_history;
 
 
-
-
-
-
+// CRIAÇÃO DOS RELACIONAMENTOS ---------------------------------------------------------------
 
 LOAD CSV WITH HEADERS FROM 'file:///COUNTRIES.csv' AS row
 MATCH (country:COUNTRY {COUNTRY_ID: row.COUNTRY_ID})
 MATCH (region:REGION {REGION_ID:row.REGION_ID})
 CREATE (country)-[:LOCATED_IN]->(region)
-RETURN country,region
+RETURN country,region;
 
 LOAD CSV WITH HEADERS FROM 'file:///LOCATIONS.csv' AS row
 MATCH (location:LOCATION {LOCATION_ID: row.LOCATION_ID})
 MATCH (country:COUNTRY {COUNTRY_ID: row.COUNTRY_ID})
 CREATE (location)-[:LOCATED_IN]->(country)
-RETURN location,country
+RETURN location,country;
 
 LOAD CSV WITH HEADERS FROM 'file:///DEPARTMENTS.csv' AS row
 MATCH (department:DEPARTMENT {DEPARTMENT_ID: row.DEPARTMENT_ID})
 MATCH (location:LOCATION {LOCATION_ID: row.LOCATION_ID})
 CREATE (department)-[:LOCATED_IN]->(location)
-RETURN department,location
+RETURN department,location;
 
 LOAD CSV WITH HEADERS FROM 'file:///EMPLOYEES.csv' AS row
 MATCH (employee:EMPLOYEE {EMPLOYEE_ID: row.EMPLOYEE_ID})
 MATCH (job:JOB {JOB_ID: row.JOB_ID})
 CREATE (employee)-[:PRACTICES]->(job)
-RETURN employee,job
+RETURN employee,job;
 
 LOAD CSV WITH HEADERS FROM 'file:///EMPLOYEES.csv' AS row
 MATCH (employee:EMPLOYEE {EMPLOYEE_ID: row.EMPLOYEE_ID})
 MATCH (department:DEPARTMENT {DEPARTMENT_ID: row.DEPARTMENT_ID})
 CREATE (employee)-[:WORKS_IN]->(department)
-RETURN employee,department
+RETURN employee,department;
 
 LOAD CSV WITH HEADERS FROM 'file:///DEPARTMENTS.csv' AS row
 MATCH (department:DEPARTMENT {DEPARTMENT_ID: row.DEPARTMENT_ID})
 MATCH (employee:EMPLOYEE {EMPLOYEE_ID: row.MANAGER_ID})
 CREATE (department)-[:MANAGED_BY]->(employee)
-RETURN department,employee
+RETURN department,employee;
 
 LOAD CSV WITH HEADERS FROM 'file:///JOB_HISTORY.csv' AS row
-MATCH (job_history:JOB_HISTORY {EMPLOYEE_ID: row.EMPLOYEE_ID, START_DATE: row.START_DATE})
-MATCH (department:DEPARTMENT {DEPARTMENT_ID: row.DEPARTMENT_ID})
-CREATE (job_history)-[:PRACTICED_IN]->(department)
-RETURN job_history,department
-
-LOAD CSV WITH HEADERS FROM 'file:///JOB_HISTORY.csv' AS row
-MATCH (job_history:JOB_HISTORY {EMPLOYEE_ID: row.EMPLOYEE_ID, START_DATE: row.START_DATE})
 MATCH (employee:EMPLOYEE {EMPLOYEE_ID: row.EMPLOYEE_ID})
-CREATE (job_history)-[:BELONGS_TO]->(employee)
-RETURN job_history,employee
+MATCH (department:DEPARTMENT {DEPARTMENT_ID: row.DEPARTMENT_ID})
+CREATE (employee)-[:WORKED_IN {START_DATE: row.START_DATE, END_DATE: row.END_DATE}]->(department)
+RETURN employee,department;
 
 LOAD CSV WITH HEADERS FROM 'file:///JOB_HISTORY.csv' AS row
-MATCH (job_history:JOB_HISTORY {EMPLOYEE_ID: row.EMPLOYEE_ID, START_DATE: row.START_DATE})
+MATCH (employee:EMPLOYEE {EMPLOYEE_ID: row.EMPLOYEE_ID})
 MATCH (job:JOB {JOB_ID: row.JOB_ID})
-CREATE (job_history)-[:REGARDING]->(job)
-RETURN job_history,job
+CREATE (employee)-[:PRACTICED {START_DATE: row.START_DATE, END_DATE: row.END_DATE}]->(job)
+RETURN employee,job;
 
 LOAD CSV WITH HEADERS FROM 'file:///EMPLOYEES.csv' AS row
 MATCH (employee:EMPLOYEE {EMPLOYEE_ID: row.EMPLOYEE_ID})
 MATCH (manager:EMPLOYEE {EMPLOYEE_ID: row.MANAGER_ID})
 CREATE (employee)-[:SUPERVISED_BY]->(manager)
-RETURN employee,manager
+RETURN employee,manager;
